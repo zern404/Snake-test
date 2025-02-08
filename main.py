@@ -5,6 +5,8 @@ import random
 import re
 import ctypes
 import sys
+import os 
+import json
 
 from colorama import Fore, init
 from fake_useragent import UserAgent
@@ -24,6 +26,7 @@ init(autoreset=True)
 
 green_list = []
 run = True
+
 enter = Fore.GREEN + '-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n'
 
 print(Fore.GREEN + 
@@ -181,7 +184,7 @@ def test_sql_injection(url):
         driver.quit()
 
 def check_xss(url, script=None):
-    """TEST XSS ATACK TO ALL |input| ELEMENT(AND CUSTOM SCRIPT INPUT IF FLAG : -c (custom script))"""
+    """TEST XSS ATACK TO |input| ELEMENT(AND CUSTOM SCRIPT INPUT IF FLAG : -c (custom script))"""
     options = Options()
     options.add_argument("--headless")
     service = Service(ChromeDriverManager().install())
@@ -217,7 +220,7 @@ def check_xss(url, script=None):
 
 def create_ua():
     """RANDOM USER-AGENT"""
-    ua = UserAgent()
+    ua = UserAgent(fallback='Mozilla/5.0 (Windows NT 10.0; Win64; x64)')
     user_agent = {'user-agent': ua.random}
     return user_agent
 
